@@ -1,3 +1,17 @@
 name: nyaFurnace
-version: 0.1 Beta
+version: 0.12 'ISUZU'
 main: com.longCat.nyaFurnace.main
+
+commands:
+   nyaFurnace:
+      description: Reload command
+      usage: '/nyaFurnace reload'
+
+permission:
+   nyaFurnace.*:
+      description: All access permission
+      children:
+         nyaFurnace.reload: true
+   nyaFurnace.reload:
+      description: Permission to reload plugin
+      default: op
