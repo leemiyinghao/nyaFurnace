@@ -9,6 +9,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -43,7 +44,7 @@ public final class main extends JavaPlugin{
 		){
 			pitch = (float)(this.getConfig().getDouble("pitch") * 0.033F) + 0.5F;
 		}else{
-			pitch = 0.5F;
+			pitch = 1F;
 		}
 		if(repeat < 1){
 			getLogger().log(Level.SEVERE, "The \"repeat\" config value is not positive,set to 1");
@@ -65,11 +66,14 @@ public final class main extends JavaPlugin{
 			if(args.length == 1){
 				if(args[0].equalsIgnoreCase("reload")){
 					if(sender.hasPermission("nyaFurnace.reload")){
-						Bukkit.getPluginManager().disablePlugin(plugin);
-						sender.sendMessage(ChatColor.YELLOW + "nyaFurnace disable");
 						Timer timer = new Timer();
 						timer.schedule(new TimerTask(){
 							public void run(){
+								HandlerList.unregisterAll(plugin);
+								org.bukkit.event.inventory.FurnaceSmeltEvent.getHandlerList().unregister(plugin);
+								org.bukkit.event.inventory.FurnaceBurnEvent.getHandlerList().unregister(plugin);
+								Bukkit.getPluginManager().disablePlugin(plugin);
+								sender.sendMessage(ChatColor.YELLOW + "nyaFurnace disable");
 								Bukkit.getPluginManager().enablePlugin(plugin);
 								sender.sendMessage(ChatColor.YELLOW + "nyaFurnace enable");
 							}
