@@ -9,17 +9,22 @@ public final class furnaceSmeltEmptyListener implements Listener {
 	private Sound sound;
 	private int repate,interval;
 	private float volume,pitch;
-	public furnaceSmeltEmptyListener(Sound _sound,int _repate,int _interval,float _volume,float _pitch,boolean defMute){
+	private boolean defMute;
+	public furnaceSmeltEmptyListener(Sound _sound,int _repate,int _interval,float _volume,float _pitch,boolean _defMute){
 		sound = _sound;
 		repate = _repate;
 		interval = _interval;
 		volume = _volume;
 		pitch = _pitch;
+		defMute = _defMute;
 	}
 	@EventHandler
 	public void smelt(FurnaceSmeltEvent event) throws InterruptedException {
 		if(event.getSource().getAmount() <= 1){
 			Location loc = event.getBlock().getLocation();
+			if(!event.getBlock().isBlockPowered() == defMute){
+				return;
+			};
 			for(int i = 0;i<repate;i++){
 				event.getBlock().getWorld().playSound(loc, sound,volume,pitch);
 				//event.getBlock().getWorld().playEffect(loc, type, data);
