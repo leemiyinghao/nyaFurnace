@@ -28,6 +28,7 @@ public final class main extends JavaPlugin{
 		}
 		int repeat = this.getConfig().getInt("repeat");
 		int interval = this.getConfig().getInt("interval");
+		boolean defMute = this.getConfig().getBoolean("defMute");
 		float volume = 1.0F;
 		//TODO: 
 		//	Adjust the volume,3.0F is too big.
@@ -58,8 +59,8 @@ public final class main extends JavaPlugin{
 			getLogger().log(Level.SEVERE, "The \"pitch\" config value is not positive,set to 6");
 			pitch = 0.5198F;
 		}
-		getServer().getPluginManager().registerEvents(new furnaceSmeltEmptyListener(sound, repeat, interval,volume,pitch), this);
-		getServer().getPluginManager().registerEvents(new furnaceFuelEmptyListener(sound, repeat, interval,volume,pitch), this);
+		getServer().getPluginManager().registerEvents(new furnaceSmeltEmptyListener(sound, repeat, interval,volume,pitch,defMute), this);
+		getServer().getPluginManager().registerEvents(new furnaceFuelEmptyListener(sound, repeat, interval,volume,pitch,defMute), this);
 	}
 	final public boolean onCommand(final CommandSender sender, Command cmd, String label, String[] args){
 		if(cmd.getName().equalsIgnoreCase("nyafurnace")){

@@ -1,5 +1,5 @@
 name: nyaFurnace
-version: 0.12 'ISUZU'
+version: 0.2
 main: com.longCat.nyaFurnace.main
 
 commands:

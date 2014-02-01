@@ -11,11 +11,15 @@
 # pitch:
 #	Pitch of Note Block sound,only work when sound type is Note Block(NOTE_*).
 #	Code list at the bottom of this configure file.
+#
+# default_mute:
+#   Control if mute will be default.If true,all the furnace won't nya unless a switcher is pluged and switched to on.
 
 sound: CAT_MEOW
 repeat: 3
 interval: 750
 pitch: 6
+default_mute: false
 
 # ===== <Note Block Pitch Code> ====
 # The number also equal to the times Note Block was clicked.

@@ -19,12 +19,14 @@ public final class furnaceFuelEmptyListener implements Listener {
 	private Sound sound;
 	private int repate,interval;
 	private float volume,pitch;
-	public furnaceFuelEmptyListener(Sound _sound,int _repate,int _interval,float _volume,float _pitch){
+	private boolean defMute;
+	public furnaceFuelEmptyListener(Sound _sound,int _repate,int _interval,float _volume,float _pitch,boolean _defMute){
 		sound = _sound;
 		repate = _repate;
 		interval = _interval;
 		volume = _volume;
 		pitch = _pitch;
+		defMute = _defMute;
 	}
 	@EventHandler
 	public void smelt(final FurnaceBurnEvent event) throws InterruptedException {
@@ -33,7 +35,11 @@ public final class furnaceFuelEmptyListener implements Listener {
 			timer.schedule(new TimerTask(){
 				public void run(){
 					if(event.getBlock().getType().equals(Material.FURNACE)){//If furnace cool down
+						//if(checkSwitch(event.getBlock().getLocation()))
 						Location loc = event.getBlock().getLocation();
+						if(!event.getBlock().isBlockPowered() == defMute){
+							return;
+						};
 						try {
 							for(int i = 0;i<repate;i++){
 							event.getBlock().getWorld().playSound(loc, sound,volume,pitch);

@@ -9,7 +9,7 @@ public final class furnaceSmeltEmptyListener implements Listener {
 	private Sound sound;
 	private int repate,interval;
 	private float volume,pitch;
-	public furnaceSmeltEmptyListener(Sound _sound,int _repate,int _interval,float _volume,float _pitch){
+	public furnaceSmeltEmptyListener(Sound _sound,int _repate,int _interval,float _volume,float _pitch,boolean defMute){
 		sound = _sound;
 		repate = _repate;
 		interval = _interval;
