@@ -28,7 +28,7 @@ public final class main extends JavaPlugin{
 		}
 		int repeat = this.getConfig().getInt("repeat");
 		int interval = this.getConfig().getInt("interval");
-		boolean defMute = this.getConfig().getBoolean("defMute");
+		boolean defMute = this.getConfig().getBoolean("default_mute");
 		float volume = 1.0F;
 		//TODO: 
 		//	Adjust the volume,3.0F is too big.
